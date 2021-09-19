@@ -19,6 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'nama','alamat', 'telepon', 'email', 'password', 'level', 'foto',
     ];
+    // public $timestamps = false;
 
     /**
      * The attributes that should be hidden for arrays.

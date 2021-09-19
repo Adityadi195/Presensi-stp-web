@@ -17,6 +17,8 @@ class CreatePresensisTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->boolean('status');
+            // $table->string('jam_masuk');
+            // $table->string('jam_pulang');
             $table->timestamps();
         });
     }

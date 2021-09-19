@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 class PresensiDetail extends Model
 {
     protected $guarded = [];
+    // public $timestamps = false;
 
     public function presensi()
     {
