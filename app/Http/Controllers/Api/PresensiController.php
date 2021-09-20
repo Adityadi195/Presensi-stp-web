@@ -39,7 +39,7 @@ class PresensiController extends Controller
             ->presensis()
             ->whereDate('created_at', Carbon::today())
             ->first();
-            $timezone = 'Asia/Makassar'; 
+            $timezone = 'Asia/Jakarta'; 
                 $date = new DateTime('now', new DateTimeZone($timezone)); 
                 $tanggal = $date->format('Y-m-d');
                 $localtime = $date->format('H:i:s');
@@ -55,7 +55,6 @@ class PresensiController extends Controller
                             'status' => false,
                             'tgl' => $tanggal,
                             'jammasuk' => $localtime
-                            
                         ]
                     );
                     
@@ -102,16 +101,12 @@ class PresensiController extends Controller
                 $userPresensiToday->update(
                    $dt=[
                         'status' => true,
-                        // 'tgl' => $tanggal,
                         'jamkeluar' => $localtime,
                         'jamkerja' => date('H:i:s', strtotime($localtime) - strtotime($userPresensiToday->jammasuk))
                     ]
                 );
                 if ($userPresensiToday->jamkeluar == ""){
                     $userPresensiToday->update($dt);
-                    return redirect('presensi-keluar');
-                }else{
-                    dd("sudah ada");
                 }
 
                 $userPresensiToday->detail()->create(
