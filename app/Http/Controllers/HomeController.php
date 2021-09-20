@@ -30,4 +30,29 @@ class HomeController extends Controller
         $presensi = DB::table('presensis')->count();
         return view('home', compact(['user','presensi']));
     }
+    public function riwayathome(Request $request)
+    {
+        $request->validate(
+            [
+                'from' => ['required'],
+                'to' => ['required'],
+            ]
+        );
+
+        $riwayat = $request->user()->presensis()->with('detail')
+            ->whereBetween(
+                DB::raw('DATE(created_at)'),
+                [
+                    $request->from, $request->to
+                ]
+            )->get();
+
+        return response()->json(
+            [
+                'message' => "list of presences by user",
+                'data' => $riwayat,
+            ],
+            Response::HTTP_OK
+        );
+    }
 }

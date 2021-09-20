@@ -39,8 +39,8 @@
                                     <tr>
                                         <td class="text-center">{{ $presensi->user->nama }}</td>
                                         <td class="text-center">{{ $presensi->status ? 'Pulang' : 'Masuk' }}</td>
-                                        <td class="text-center">{{ $presensi->created_at->format('H:i:s') }}</td>
-                                        <td class="text-center">{{ $presensi->updated_at->format('H:i:s') }}</td>
+                                        <td class="text-center">{{ $presensi->jammasuk }}</td>
+                                        <td class="text-center">{{ $presensi->jamkeluar }}</td>
                                     </tr>
                                 </thead>
                             </table>
@@ -57,7 +57,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table">
+                                <table class="table" id="datatable">
                                     <tbody>
                                         <tr>
                                             <th>Long, lat</th>

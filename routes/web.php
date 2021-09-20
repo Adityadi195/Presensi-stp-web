@@ -22,6 +22,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/riwayat', 'HomeController@riwayathome')->name('riwayathome');
+
 
 Route::get('cari','UserController@index');
     Route::resource('user', 'UserController');

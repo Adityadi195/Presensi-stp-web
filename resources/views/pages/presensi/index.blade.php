@@ -32,6 +32,7 @@
                                             <th class="text-center">Status</th>
                                             <th class="text-center">Masuk</th>
                                             <th class="text-center">Pulang</th>
+                                            <th class="text-center">Durasi Kerja</th>
                                             <th></th>
                                         </tr>
                                         @foreach ($presensi as $item)
@@ -42,9 +43,11 @@
                                                     {{ $item->status ? 'Masuk' : '-' }}
                                                 </td>
                                                 <td class="text-center">
-                                                    {{ $item->created_at->format('d-m-Y H:i:s') }}</td>
+                                                    {{ $item->jammasuk }}</td>
                                                 <td class="text-center">
-                                                    {{ $item->updated_at->format('d-m-Y H:i:s') }}</td>
+                                                    {{ $item->jamkeluar }}</td>
+                                                <td class="text-center">
+                                                    {{ $item->jamkerja }}</td>
                                                 <td class="text-center">
                                                     <a href="{{ Route('presensi.show', $item->id) }}"
                                                         class="btn btn-icon icon-left btn-info"><i

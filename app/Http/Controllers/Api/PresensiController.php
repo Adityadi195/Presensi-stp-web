@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Presensi;
 use App\Traits\FotoStorage;
+use DateTime;
+use DateTimeZone;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -36,17 +39,26 @@ class PresensiController extends Controller
             ->presensis()
             ->whereDate('created_at', Carbon::today())
             ->first();
+            $timezone = 'Asia/Makassar'; 
+                $date = new DateTime('now', new DateTimeZone($timezone)); 
+                $tanggal = $date->format('Y-m-d');
+                $localtime = $date->format('H:i:s');
 
         if ($presensiType == 'in') {
             if (! $userPresensiToday) {
+                
                 $presensi = $request
                     ->user()
                     ->presensis()
                     ->create(
                         [
-                            'status' => false
+                            'status' => false,
+                            'tgl' => $tanggal,
+                            'jammasuk' => $localtime
+                            
                         ]
                     );
+                    
 
                 $presensi->detail()->create(
                     [
@@ -88,10 +100,19 @@ class PresensiController extends Controller
                 }
 
                 $userPresensiToday->update(
-                    [
-                        'status' => true
+                   $dt=[
+                        'status' => true,
+                        // 'tgl' => $tanggal,
+                        'jamkeluar' => $localtime,
+                        'jamkerja' => date('H:i:s', strtotime($localtime) - strtotime($userPresensiToday->jammasuk))
                     ]
                 );
+                if ($userPresensiToday->jamkeluar == ""){
+                    $userPresensiToday->update($dt);
+                    return redirect('presensi-keluar');
+                }else{
+                    dd("sudah ada");
+                }
 
                 $userPresensiToday->detail()->create(
                     [
@@ -117,6 +138,7 @@ class PresensiController extends Controller
                 ],
                 Response::HTTP_UNPROCESSABLE_ENTITY
             );
+            
         }
     }
 
