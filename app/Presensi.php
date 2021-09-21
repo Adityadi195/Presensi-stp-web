@@ -20,9 +20,10 @@ class Presensi extends Model
 
     public function scopeCountPresensi($query, $status)
     {
-        return $query->whereDate('created_at', Carbon::today())
+        return $query->whereDate('created_at', Carbon::now())
             ->where('status', $status)->count();
     }
+
 
     public function detail()
     {

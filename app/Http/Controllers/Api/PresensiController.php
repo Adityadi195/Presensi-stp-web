@@ -37,9 +37,9 @@ class PresensiController extends Controller
         $presensiType = $request->type;
         $userPresensiToday = $request->user()
             ->presensis()
-            ->whereDate('created_at', Carbon::today())
+            ->whereDate('created_at', Carbon::now())
             ->first();
-            $timezone = 'Asia/Jakarta'; 
+                $timezone = 'Asia/Jakarta';
                 $date = new DateTime('now', new DateTimeZone($timezone)); 
                 $tanggal = $date->format('Y-m-d');
                 $localtime = $date->format('H:i:s');
@@ -58,7 +58,6 @@ class PresensiController extends Controller
                         ]
                     );
                     
-
                 $presensi->detail()->create(
                     [
                         'type' => 'in',
@@ -71,7 +70,7 @@ class PresensiController extends Controller
 
                 return response()->json(
                     [
-                        'message' => 'Success'
+                        'message' => 'Absen Masuk Berhasil'
                     ],
                     Response::HTTP_CREATED
                 );
@@ -80,7 +79,7 @@ class PresensiController extends Controller
             // else show user has been checked in
             return response()->json(
                 [
-                    'message' => 'User has been checked in',
+                    'message' => 'Telah Melakukan Absen',
                 ],
                 Response::HTTP_OK
             );
@@ -92,7 +91,7 @@ class PresensiController extends Controller
                 if ($userPresensiToday->status) {
                     return response()->json(
                         [
-                            'message' => 'User has been checked out',
+                            'message' => 'Telah Melakukan Absen Pulang',
                         ],
                         Response::HTTP_OK
                     );
@@ -121,7 +120,7 @@ class PresensiController extends Controller
 
                 return response()->json(
                     [
-                        'message' => 'Berhasil'
+                        'message' => 'Absen Pulang Berhasil'
                     ],
                     Response::HTTP_CREATED
                 );

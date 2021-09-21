@@ -38,7 +38,7 @@
                         <table class="table table-striped" id="datatable">
                             <thead>
                                 <tr>
-                                    <th class="text-center">ID</th>
+                                    <th class="text-center">Id</th>
                                     <th class="text-center">Nama</th>
                                     <th class="text-center">Status</th>
                                     <th class="text-center">Tanggal</th>
@@ -49,7 +49,7 @@
                                 </tr>
                                 @foreach ($presensi as $item)
                                     <tr>
-                                        <td class="text-center">{{ $item->id }}</td>
+                                        <td class="text-center">{{ $item->user_id }}</td>
                                         <td class="text-center">{{ $item->user->nama }}</td>
                                         <td class="text-center">
                                             {{ $item->status ? 'Masuk' : '-' }}
