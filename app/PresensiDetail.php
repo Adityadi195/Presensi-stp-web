@@ -9,10 +9,13 @@ use Illuminate\Support\Facades\DB;
 class PresensiDetail extends Model
 {
     protected $guarded = [];
+    protected $table = "presensi_details";
+    protected $fillable = [
+        'id','presensi_id','long','lat','lokasi','foto','type'];
     // public $timestamps = false;
 
     public function presensi()
     {
-        return $this->belongsTo(Presensi::class);
+        return $this->hasMany(Presensi::class);
     }
 }

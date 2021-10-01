@@ -32,3 +32,4 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::post('presensi', 'Api\PresensiController@store');
     Route::get('presensi/riwayat', 'Api\PresensiController@riwayat');
 });
+

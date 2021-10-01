@@ -9,7 +9,7 @@
                 </div>
             @endif
             <div class="section-header">
-                <h1>Data Kehadiran Pegawai</h1>
+                <h1>Data Kehadiran Pegawai {{ $presensi->user->nama }} </h1>
             </div>
             <div class="section-body">
                 <div class="btn-group mb-4" role="group" aria-label="Basic example">
@@ -19,33 +19,6 @@
             </div>
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">
-                                <i class="ion ion-clipboard mr-1"></i>
-                                presensi
-                            </h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center">User</th>
-                                        <th class="text-center">Status</th>
-                                        <th class="text-center">Masuk</th>
-                                        <th class="text-center">Pulang</th>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">{{ $presensi->user->nama }}</td>
-                                        <td class="text-center">{{ $presensi->status ? 'Pulang' : 'Masuk' }}</td>
-                                        <td class="text-center">{{ $presensi->jammasuk }}</td>
-                                        <td class="text-center">{{ $presensi->jamkeluar }}</td>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
                     <!-- /.card -->
                     @foreach ($presensi->detail as $detail)
                         <div class="card">
@@ -77,6 +50,7 @@
                                                     </iframe>
                                                 </div>
                                             </td>
+                                            <div id="mapLokasiTempat" class="mapLokasiTempat"></div>
                                         </tr>
                                         <tr>
                                             <th>Foto</th>

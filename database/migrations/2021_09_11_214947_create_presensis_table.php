@@ -17,10 +17,11 @@ class CreatePresensisTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->boolean('status');
+            $table->string('keterangan');
             $table->date("tgl");
             $table->time('jammasuk')->nullable();
             $table->time('jamkeluar')->nullable();
-            $table->time('jamkerja')->nullable();
+            $table->integer('jamkerja')->nullable();
             $table->timestamps();
         });
     }

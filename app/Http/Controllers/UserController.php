@@ -36,7 +36,7 @@ class UserController extends Controller
                 ->paginate($pagination);
                 $user->withPath('user');
                 $user->appends($request->all);
-                return view('pages.user.index', compact('user', 'keyword'));
+                return view('pages.user.index', compact('user'))->with('i', ($request->input('page', 1)-1) * $pagination);
     }
 
 

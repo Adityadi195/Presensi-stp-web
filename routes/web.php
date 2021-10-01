@@ -22,10 +22,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/riwayat', 'HomeController@riwayathome')->name('riwayathome');
 
-
-Route::get('cari','UserController@index');
+    Route::get('cari','UserController@index');
     Route::resource('user', 'UserController');
     Route::resource('presensi', 'PresensiController')->only(['index', 'show']);
-    Route::get('/cari','PresensiController@index');
+    Route::get('/search','PresensiController@search');
+    Route::get('/cetak-presensi-pertanggal/{fromdate}/{todate}','PresensiController@cetakPertanggal')->name('cetak-presensi-pertanggal');
+
+

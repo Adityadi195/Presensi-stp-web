@@ -24,7 +24,7 @@
 
 
 
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+    {{-- <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' /> --}}
 
 </head>
 
@@ -68,7 +68,7 @@
             <script src="https://unpkg.com/@chartisan/echarts/dist/chartisan_echarts.js"></script> --}}
 
             <!-- Page Specific JS File -->
-            <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+            {{-- <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script> --}}
             @stack('scripts')
 </body>
 

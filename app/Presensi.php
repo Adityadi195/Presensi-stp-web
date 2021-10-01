@@ -15,7 +15,7 @@ class Presensi extends Model
     protected $table = "presensis";
     protected $primaryKey = "id";
     protected $fillable = [
-        'id','user_id','status','tgl','jammasuk','jamkeluar','jamkerja'];
+        'id','user_id','status','keterangan','tgl','jammasuk','jamkeluar','jamkerja'];
     // public $timestamps = false;
 
     public function scopeCountPresensi($query, $status)
@@ -23,7 +23,6 @@ class Presensi extends Model
         return $query->whereDate('created_at', Carbon::now())
             ->where('status', $status)->count();
     }
-
 
     public function detail()
     {

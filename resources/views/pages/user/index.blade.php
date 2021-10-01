@@ -46,7 +46,7 @@
                                 <table class="table table-striped " id="datatable">
                                     <thead>
                                         <tr>
-                                            <th class="text-center">Id</th>
+                                            <th class="text-center">No</th>
                                             <th class="text-center">Nama</th>
                                             <th class="text-center">Jabatan</th>
                                             <th class="text-center">Action</th>
@@ -54,7 +54,7 @@
                                         {{-- field database dari inputan tambah data --}}
                                         @foreach ($user as $id => $users)
                                             <tr>
-                                                <td class="text-center"> {{ $users->id }}</td>
+                                                <td class="text-center"> {{ ++$i }}</td>
                                                 <td class="text-center">{{ $users->nama }}</td>
                                                 <td class="text-center">{{ $users->level }}</td>
                                                 <td class="text-center ">

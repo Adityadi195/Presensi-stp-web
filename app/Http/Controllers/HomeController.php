@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Presensi;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
@@ -28,31 +27,12 @@ class HomeController extends Controller
     {
         $user = DB::table('users')->count();
         $presensi = DB::table('presensis')->count();
-        return view('home', compact(['user','presensi']));
+        $alpha = $user - $presensi;
+        return view('home', compact(['user','presensi','alpha']));   
     }
-    public function riwayathome(Request $request)
+    public function indexpresensi()
     {
-        $request->validate(
-            [
-                'from' => ['required'],
-                'to' => ['required'],
-            ]
-        );
-
-        $riwayat = $request->user()->presensis()->with('detail')
-            ->whereBetween(
-                DB::raw('DATE(created_at)'),
-                [
-                    $request->from, $request->to
-                ]
-            )->get();
-
-        return response()->json(
-            [
-                'message' => "list of presences by user",
-                'data' => $riwayat,
-            ],
-            Response::HTTP_OK
-        );
+        $presensi = Presensi::with(['user', 'detail'])->paginate(5);
+        return view('home');
     }
 }

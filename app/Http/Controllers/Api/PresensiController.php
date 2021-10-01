@@ -53,6 +53,7 @@ class PresensiController extends Controller
                     ->create(
                         [
                             'status' => false,
+                            'keterangan' => 'masuk',
                             'tgl' => $tanggal,
                             'jammasuk' => $localtime
                         ]
@@ -100,8 +101,9 @@ class PresensiController extends Controller
                 $userPresensiToday->update(
                    $dt=[
                         'status' => true,
+                        'keterangan' => 'pulang',
                         'jamkeluar' => $localtime,
-                        'jamkerja' => date('H:i:s', strtotime($localtime) - strtotime($userPresensiToday->jammasuk))
+                        'jamkerja' => date('i', strtotime($localtime) - strtotime($userPresensiToday->jammasuk))
                     ]
                 );
                 if ($userPresensiToday->jamkeluar == ""){
